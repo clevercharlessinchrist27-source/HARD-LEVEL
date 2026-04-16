@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int minPatches(vector<int>& nums, int n) {
+        int m = nums.size();
+        long long reach = 0;
+        int count = 0;
+        int i = 0;
+
+        while (i < m && reach < n) {
+            if (nums[i] <= reach + 1) {
+                reach += nums[i++];
+            } else {
+                reach += reach + 1;
+                count++;
+            }
+        }
+
+        while (reach < n) {
+            reach += reach + 1;
+            count++;
+        }
+
+        return count;
+    }
+};
